@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSM Unlock Tools · Buy & Sell</title>
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter for clean UI -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f6f8fc;
+            color: #1e293b;
+            line-height: 1.5;
+            padding: 24px 32px;
+        }
+
+        /* Main container for realistic spacing */
+        .app-wrapper {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        /* ---------- HEADER ---------- */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            background: #2563eb;
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 8px 18px -4px rgba(37, 99, 235, 0.25);
+        }
+
+        .logo-text h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #0f172a;
+        }
+
+        .logo-text span {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #64748b;
+            display: block;
+            margin-top: 2px;
+            letter-spacing: 0.3px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .search-wrapper {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 60px;
+            padding: 6px 6px 6px 18px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02), 0 0 0 1px #e2e8f0;
+            transition: all 0.2s;
+        }
+
+        .search-wrapper:focus-within {
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15), 0 0 0 1px #2563eb;
+        }
+
+        .search-wrapper i {
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+
+        .search-wrapper input {
+            border: none;
+            padding: 10px 12px;
+            font-size: 0.95rem;
+            width: 220px;
+            outline: none;
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .search-wrapper input::placeholder {
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        .search-wrapper button {
+            background: #2563eb;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.15s;
+            white-space: nowrap;
+        }
+
+        .search-wrapper button:hover {
+            background: #1d4ed8;
+        }
+
+        .cart-btn {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 40px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #1e293b;
+            cursor: pointer;
+            transition: all 0.15s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .cart-btn i {
+            font-size: 1.1rem;
+            color: #2563eb;
+        }
+
+        .cart-btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .cart-count {
+            background: #2563eb;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 30px;
+            margin-left: 4px;
+        }
+
+        .profile-btn {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 40px;
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .profile-btn i {
+            font-size: 1.3rem;
+            color: #475569;
+        }
+
+        .profile-btn:hover {
+            background: #f1f5f9;
+        }
+
+        /* ---------- CATEGORY PILLS ---------- */
+        .category-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #334155;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .pill i {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .pill.active {
+            background: #2563eb;
+            border-color: #2563eb;
+            color: white;
+        }
+
+        .pill.active i {
+            color: white;
+        }
+
+        .pill:hover:not(.active) {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        /* ---------- MAIN GRID ---------- */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* product grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 22px;
+        }
+
+        /* product card */
+        .product-card {
+            background: white;
+            border-radius: 24px;
+            padding: 20px 18px 18px 18px;
+            box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.04), 0 0 0 1px #f1f5f9;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.08), 0 0 0 1px #e2e8f0;
+        }
+
+        .badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: #f97316;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 30px;
+            letter-spacing: 0.2px;
+            text-transform: uppercase;
+        }
+
+        .badge.green {
+            background: #10b981;
+        }
+
+        .badge.blue {
+            background: #3b82f6;
+        }
+
+        .card-img {
+            background: #f8fafc;
+            border-radius: 18px;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: #2563eb;
+            margin-bottom: 16px;
+            border: 1px solid #eef2f6;
+            transition: background 0.15s;
+        }
+
+        .product-card:hover .card-img {
+            background: #f1f5f9;
+        }
+
+        .product-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: -0.01em;
+            margin-bottom: 4px;
+            color: #0f172a;
+        }
+
+        .product-desc {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .product-desc i {
+            font-size: 0.7rem;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .price {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #0f172a;
+            letter-spacing: -0.02em;
+        }
+
+        .price small {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #64748b;
+            margin-left: 2px;
+        }
+
+        .add-btn {
+            background: #f1f5f9;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 14px;
+            color: #1e293b;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .add-btn:hover {
+            background: #2563eb;
+            color: white;
+            box-shadow: 0 8px 16px -6px rgba(37, 99, 235, 0.4);
+        }
+
+        /* ---------- SIDEBAR ---------- */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .side-card {
+            background: white;
+            border-radius: 26px;
+            padding: 22px 20px;
+            box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.04), 0 0 0 1px #f1f5f9;
+        }
+
+        .side-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #0f172a;
+        }
+
+        .side-card h3 i {
+            color: #2563eb;
+            font-size: 1.1rem;
+        }
+
+        .sell-form .form-group {
+            margin-bottom: 14px;
+        }
+
+        .sell-form label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #475569;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .sell-form input, .sell-form select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            background: #f9fbfd;
+            transition: 0.15s;
+            outline: none;
+        }
+
+        .sell-form input:focus, .sell-form select:focus {
+            border-color: #2563eb;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 18px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.15s, transform 0.1s;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        /* trust indicators */
+        .trust-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.8rem;
+            color: #475569;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .trust-item i {
+            color: #10b981;
+        }
+
+        /* stats */
+        .stat-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .stat-value i {
+            color: #f59e0b;
+            font-size: 0.8rem;
+            margin-right: 4px;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 1000px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 22px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 16px;
+            }
+            .top-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .header-actions {
+                justify-content: space-between;
+            }
+            .search-wrapper {
+                flex: 1;
+            }
+            .search-wrapper input {
+                width: 100%;
+            }
+            .sidebar {
+                grid-template-columns: 1fr;
+            }
+            .product-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            .search-wrapper button span {
+                display: none;
+            }
+            .search-wrapper button i {
+                display: block;
+            }
+            .search-wrapper button {
+                padding: 10px 14px;
+            }
+        }
+
+        /* toast message */
+        .toast-message {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: #0f172a;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: all 0.25s;
+            pointer-events: none;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+        }
+
+        .toast-message.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast-message i {
+            color: #4ade80;
+        }
+
+        /* fake hidden button for demo */
+        .hidden-trigger {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-wrapper">
+    <!-- ========== HEADER ========== -->
+    <header class="top-bar">
+        <div class="logo-area">
+            <div class="logo-icon">
+                <i class="fas fa-tools"></i>
+            </div>
+            <div class="logo-text">
+                <h1>GSM<span style="color:#2563eb;">Unlock</span></h1>
+                <span>buy · sell · unlock tools</span>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            <div class="search-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search tools, boxes, credits..." id="searchInput">
+                <button id="searchBtn"><i class="fas fa-arrow-right" style="display: none;"></i><span>Search</span></button>
+            </div>
+            <button class="cart-btn" id="cartBtn">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Cart</span>
+                <span class="cart-count" id="cartCount">3</span>
+            </button>
+            <div class="profile-btn">
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== CATEGORY PILLS ========== -->
+    <div class="category-bar">
+        <div class="pill active" data-category="all"><i class="fas fa-layer-group"></i> All tools</div>
+        <div class="pill" data-category="boxes"><i class="fas fa-box"></i> Boxes</div>
+        <div class="pill" data-category="software"><i class="fas fa-code"></i> Software</div>
+        <div class="pill" data-category="cables"><i class="fas fa-plug"></i> Cables</div>
+        <div class="pill" data-category="credits"><i class="fas fa-coins"></i> Credits</div>
+        <div class="pill" data-category="accessories"><i class="fas fa-microchip"></i> Accessories</div>
+    </div>
+
+    <!-- ========== MAIN GRID ========== -->
+    <div class="main-grid">
+        <!-- product grid -->
+        <div class="product-grid" id="productGrid">
+            <!-- cards injected by JS -->
+        </div>
+
+        <!-- sidebar -->
+        <aside class="sidebar">
+            <!-- sell card -->
+            <div class="side-card">
+                <h3><i class="fas fa-tag"></i> Sell your tool</h3>
+                <div class="sell-form">
+                    <div class="form-group">
+                        <label>Tool name</label>
+                        <input type="text" placeholder="e.g. NCK Box Pro" id="sellName">
+                    </div>
+                    <div class="form-group">
+                        <label>Price (USD)</label>
+                        <input type="number" placeholder="120" id="sellPrice" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="sellCategory">
+                            <option value="boxes">Box</option>
+                            <option value="software">Software</option>
+                            <option value="cables">Cable</option>
+                            <option value="credits">Credits</option>
+                            <option value="accessories">Accessory</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary" id="listToolBtn"><i class="fas fa-plus-circle"></i> List tool</button>
+                    <div class="trust-row">
+                        <div class="trust-item"><i class="fas fa-check-circle"></i> Verified buyers</div>
+                        <div class="trust-item"><i class="fas fa-shield-alt"></i> Escrow</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- stats / trust -->
+            <div class="side-card">
+                <h3><i class="fas fa-chart-simple"></i> Marketplace activity</h3>
+                <div class="stat-item">
+                    <span class="stat-label"><i class="fas fa-box"></i> Active listings</span>
+                    <span class="stat-value">1,428</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label"><i class="fas fa-user-check"></i> Sellers online</span>
+                    <span class="stat-value">312</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label"><i class="fas fa-star"></i> Trust score</span>
+                    <span class="stat-value"><i class="fas fa-star"></i> 4.92</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label"><i class="fas fa-truck"></i> Avg. delivery</span>
+                    <span class="stat-value">1.8 days</span>
+                </div>
+                <div style="margin-top: 16px; background: #eef6ff; border-radius: 16px; padding: 12px 14px; font-size: 0.8rem; color: #1e40af; display: flex; gap: 10px; align-items: center;">
+                    <i class="fas fa-shield-halved" style="font-size: 1.2rem;"></i>
+                    <span>Buyer protection on every order</span>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>
+
+<!-- toast message -->
+<div class="toast-message" id="toast">
+    <i class="fas fa-check-circle"></i> <span id="toastText">Added to cart</span>
+</div>
+
+<script>
+    // ---------- DATA ----------
+    const products = [
+        {
+            id: 1,
+            name: 'NCK Box Pro',
+            description: 'Activation for 1 year',
+            price: 149.99,
+            icon: 'fa-box-open',
+            category: 'boxes',
+            badge: 'Bestseller',
+            badgeClass: 'badge'
+        },
+        {
+            id: 2,
+            name: 'UnlockTool License',
+            description: '12 months · 1 PC',
+            price: 89.99,
+            icon: 'fa-laptop-code',
+            category: 'software',
+            badge: 'Hot',
+            badgeClass: 'badge blue'
+        },
+        {
+            id: 3,
+            name: 'Chimera Tool',
+            description: 'Activation + cable set',
+            price: 199.00,
+            icon: 'fa-microchip',
+            category: 'boxes',
+            badge: '',
+            badgeClass: ''
+        },
+        {
+            id: 4,
+            name: 'Hydra Tool',
+            description: 'USB dongle + software',
+            price: 129.49,
+            icon: 'fa-usb',
+            category: 'boxes',
+            badge: 'New',
+            badgeClass: 'badge green'
+        },
+        {
+            id: 5,
+            name: 'DC Unlocker',
+            description: 'Credits pack (50)',
+            price: 39.99,
+            icon: 'fa-coins',
+            category: 'credits',
+            badge: '',
+            badgeClass: ''
+        },
+        {
+            id: 6,
+            name: 'USB Cable Set',
+            description: 'Universal 12-in-1',
+            price: 19.99,
+            icon: 'fa-plug',
+            category: 'cables',
+            badge: '',
+            badgeClass: ''
+        },
+        {
+            id: 7,
+            name: 'Sigma Box',
+            description: 'Full activated + 2 cables',
+            price: 259.00,
+            icon: 'fa-box',
+            category: 'boxes',
+            badge: 'Premium',
+            badgeClass: 'badge blue'
+        },
+        {
+            id: 8,
+            name: 'EFT Pro Dongle',
+            description: '1 year license',
+            price: 169.99,
+            icon: 'fa-shield',
+            category: 'software',
+            badge: '',
+            badgeClass: ''
+        }
+    ];
+
+    // ---------- DOM refs ----------
+    const productGrid = document.getElementById('productGrid');
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const cartCountSpan = document.getElementById('cartCount');
+    const toast = document.getElementById('toast');
+    const toastText = document.getElementById('toastText');
+    const listToolBtn = document.getElementById('listToolBtn');
+    const sellName = document.getElementById('sellName');
+    const sellPrice = document.getElementById('sellPrice');
+    const sellCategory = document.getElementById('sellCategory');
+    const pills = document.querySelectorAll('.pill');
+
+    // state
+    let cartItems = 3; // starting count for realism
+    let currentCategory = 'all';
+    let searchQuery = '';
+
+    // ---------- RENDER PRODUCTS ----------
+    function renderProducts() {
+        // filter by category and search
+        let filtered = products.filter(p => {
+            const matchCategory = currentCategory === 'all' || p.category === currentCategory;
+            const matchSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                p.description.toLowerCase().includes(searchQuery.toLowerCase());
+            return matchCategory && matchSearch;
+        });
+
+        if (filtered.length === 0) {
+            productGrid.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; background: white; border-radius: 24px; border: 1px dashed #cbd5e1;">
+                    <i class="fas fa-search" style="font-size: 3rem; color: #94a3b8; margin-bottom: 16px;"></i>
+                    <h3 style="font-weight: 600; color: #1e293b;">No tools found</h3>
+                    <p style="color: #64748b; font-size: 0.95rem;">Try a different search or category</p>
+                </div>
+            `;
+            return;
+        }
+
+        productGrid.innerHTML = filtered.map(p => {
+            // build badge only if badge text exists
+            const badgeHtml = p.badge ? `<span class="${p.badgeClass || 'badge'}">${p.badge}</span>` : '';
+            return `
+                <div class="product-card" data-id="${p.id}" data-category="${p.category}">
+                    ${badgeHtml}
+                    <div class="card-img">
+                        <i class="fas ${p.icon}"></i>
+                    </div>
+                    <div class="product-title">${p.name}</div>
+                    <div class="product-desc">
+                        <i class="fas fa-circle" style="font-size: 0.4rem; color: #94a3b8;"></i> ${p.description}
+                    </div>
+                    <div class="price-row">
+                        <div class="price">$${p.price.toFixed(2)}<small></small></div>
+                        <button class="add-btn" data-id="${p.id}" title="Add to cart">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // ---------- TOAST ----------
+    let toastTimer;
+    function showToast(message) {
+        toastText.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+            toast.classList.remove('show');
+        }, 2200);
+    }
+
+    // ---------- CART ----------
+    function updateCartCount(delta = 1) {
+        cartItems += delta;
+        if (cartItems < 0) cartItems = 0;
+        cartCountSpan.textContent = cartItems;
+    }
+
+    // handle add to cart (event delegation)
+    productGrid.addEventListener('click', (e) => {
+        const addBtn = e.target.closest('.add-btn');
+        if (addBtn) {
+            e.preventDefault();
+            const productId = parseInt(addBtn.dataset.id);
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                updateCartCount(1);
+                showToast(`"${product.name}" added to cart`);
+            }
+        }
+    });
+
+    // ---------- SEARCH ----------
+    function performSearch() {
+        searchQuery = searchInput.value.trim();
+        renderProducts();
+    }
+
+    searchBtn.addEventListener('click', performSearch);
+    searchInput.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+    // optional: live search with debounce
+    let searchDebounce;
+    searchInput.addEventListener('input', () => {
+        clearTimeout(searchDebounce);
+        searchDebounce = setTimeout(() => {
+            searchQuery = searchInput.value.trim();
+            renderProducts();
+        }, 300);
+    });
+
+    // ---------- CATEGORY PILLS ----------
+    pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            pills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            currentCategory = pill.dataset.category;
+            renderProducts();
+        });
+    });
+
+    // ---------- SELL FORM (demo) ----------
+    listToolBtn.addEventListener('click', () => {
+        const name = sellName.value.trim();
+        const price = parseFloat(sellPrice.value);
+        const category = sellCategory.value;
+
+        if (!name) {
+            showToast('Please enter a tool name');
+            return;
+        }
+        if (!price || price <= 0) {
+            showToast('Please enter a valid price');
+            return;
+        }
+
+        // fake listing: add to products array and re-render
+        const newProduct = {
+            id: products.length + 1,
+            name: name,
+            description: 'Just listed · seller',
+            price: price,
+            icon: category === 'boxes' ? 'fa-box' : 
+                  category === 'software' ? 'fa-code' : 
+                  category === 'cables' ? 'fa-plug' : 
+                  category === 'credits' ? 'fa-coins' : 'fa-microchip',
+            category: category,
+            badge: 'Your listing',
+            badgeClass: 'badge green'
+        };
+        products.unshift(newProduct); // show first
+        renderProducts();
+
+        // clear form
+        sellName.value = '';
+        sellPrice.value = '';
+        showToast(`"${name}" listed successfully!`);
+
+        // reset category filter to all so the new listing is visible
+        if (currentCategory !== 'all') {
+            currentCategory = 'all';
+            pills.forEach(p => p.classList.remove('active'));
+            document.querySelector('.pill[data-category="all"]').classList.add('active');
+            renderProducts();
+        }
+    });
+
+    // ---------- CART BUTTON (demo) ----------
+    document.getElementById('cartBtn').addEventListener('click', () => {
+        showToast(`Cart has ${cartItems} items (demo)`);
+    });
+
+    // ---------- PROFILE (demo) ----------
+    document.querySelector('.profile-btn').addEventListener('click', () => {
+        showToast('Profile · demo account');
+    });
+
+    // ---------- INITIAL RENDER ----------
+    renderProducts();
+
+    // extra: set active category from pill already active
+    // (all good)
+</script>
+</body>
+</html>
